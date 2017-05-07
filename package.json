@@ -1,0 +1,29 @@
+{
+  "name": "roshantiwary.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roshantiwary/roshantiwary.github.io.git"
+  },
+  "keywords": [
+    "express",
+    "heroku",
+    "angular"
+  ],
+  "author": "Nisheed Jagadish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roshantiwary/roshantiwary.github.io/issues"
+  },
+  "homepage": "https://github.com/roshantiwary/roshantiwary.github.io#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "http-proxy": "^1.16.2"
+  }
+}

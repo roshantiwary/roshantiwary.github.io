@@ -163,10 +163,10 @@ var GlobalService = (function () {
     GlobalService.prototype.addtoCart = function (selectsize, qty, orderID, sku) {
         var url;
         if (qty > 1) {
-            url = "http://www.palletteapart.com/boot/rest/api/v1/cart/update/";
+            url = "/boot/rest/api/v1/cart/update/";
         }
         else {
-            url = "http://www.palletteapart.com/boot/rest/api/v1/cart/add/";
+            url = "/boot/rest/api/v1/cart/add/";
         }
         var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* URLSearchParams */]();
         params.set('sku', sku);
@@ -180,7 +180,7 @@ var GlobalService = (function () {
             .post(url, JSON.stringify({ productId: selectsize, quantity: qty, orderId: orderID, skuId: sku }), { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     GlobalService.prototype.removeProduct = function (sku, itemID, orderID) {
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/cart/remove/";
+        var url = "/boot/rest/api/v1/cart/remove/";
         return this.http
             .post(url, JSON.stringify({ skuId: sku, productId: itemID, orderId: orderID, profileId: '123' }), { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
@@ -205,14 +205,14 @@ var GlobalService = (function () {
     };
     // Get Logged-In Profile for Account Pages
     GlobalService.prototype.getProfile = function () {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/user";
+        var url = "/boot/private/rest/api/v1/userprofile/user";
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Get Order Summary for Checkout Pages
     GlobalService.prototype.getCart = function () {
         var _this = this;
         var orderID = localStorage.getItem('orderId');
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/cart/" + orderID + "/details";
+        var url = "/boot/rest/api/v1/cart/" + orderID + "/details";
         this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); })
             .subscribe(function (response) {
             console.log(JSON.stringify(response));
@@ -236,42 +236,42 @@ var GlobalService = (function () {
     };
     // Get Order History for a Profile
     GlobalService.prototype.getOrderHistory = function () {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/orders";
+        var url = "/boot/private/rest/api/v1/userprofile/account/orders";
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Get Order Detail
     GlobalService.prototype.getOrderDetail = function (orderId) {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
+        var url = "/boot/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Get Addresses for a Profile
     GlobalService.prototype.getProfileAddresses = function () {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/addresses";
+        var url = "/boot/private/rest/api/v1/userprofile/account/addresses";
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Edit Address of a Profile  
     GlobalService.prototype.editAddress = function (address) {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/address/edit";
+        var url = "/boot/private/rest/api/v1/userprofile/account/address/edit";
         return this.http.put(url, JSON.stringify(address), { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Remove Address from a Profile  
     GlobalService.prototype.removeAddress = function (addressKey) {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/address/" + addressKey + "/remove";
+        var url = "/boot/private/rest/api/v1/userprofile/account/address/" + addressKey + "/remove";
         return this.http.delete(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Get Profile Address
     GlobalService.prototype.getProfileAddress = function (addressKey) {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/address/" + addressKey;
+        var url = "/boot/private/rest/api/v1/userprofile/account/address/" + addressKey;
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // Address Address of a Profile  
     GlobalService.prototype.addAddress = function (address) {
-        var url = "http://www.palletteapart.com/boot/private/rest/api/v1/userprofile/account/address/add";
+        var url = "/boot/private/rest/api/v1/userprofile/account/address/add";
         return this.http.post(url, JSON.stringify(address), { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // User registration
     GlobalService.prototype.registration = function (user) {
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/account/create";
+        var url = "/boot/rest/api/v1/account/create";
         return this.http.post(url, JSON.stringify(user), { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     GlobalService.prototype.getLoggedInProfile = function () {
@@ -293,11 +293,11 @@ var GlobalService = (function () {
     // get all the address
     GlobalService.prototype.getAllAddress = function (orderID) {
         // shipmentAddress
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/shipping/address/savedAddress/" + orderID;
+        var url = "/boot/rest/api/v1/shipping/address/savedAddress/" + orderID;
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     GlobalService.prototype.goTopayment = function (addressid, orderId) {
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/shipping/address/set/" + addressid + "/to/" + orderId;
+        var url = "/boot/rest/api/v1/shipping/address/set/" + addressid + "/to/" + orderId;
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     // openCart(){
@@ -306,7 +306,7 @@ var GlobalService = (function () {
     //   console.log('dasd')
     // }
     GlobalService.prototype.getorderDetails = function (orderID) {
-        var url = "http://www.palletteapart.com/boot/orderConfirmation/order/" + orderID;
+        var url = "/boot/orderConfirmation/order/" + orderID;
         return this.http.get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
     GlobalService.prototype.firstDropDownChanged = function () {
@@ -320,7 +320,7 @@ var GlobalService = (function () {
         localStorage.removeItem('orderId');
         localStorage.removeItem('items');
         this.cartItems = new Array();
-        var signoutURL = 'http://www.palletteapart.com/boot/oauth/logout';
+        var signoutURL = '/boot/oauth/logout';
         return this.http.post(signoutURL, { headers: this.getHeaders() }).map(function (res) { return res; });
     };
     GlobalService = __decorate([
@@ -552,7 +552,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.OauthLoginEndPointUrl = 'http://www.palletteapart.com/boot/oauth/token'; // Oauth Login EndPointUrl to web API
+        this.OauthLoginEndPointUrl = '/boot/oauth/token'; // Oauth Login EndPointUrl to web API
         this.clientId = 'acme';
         this.clientSecret = 'acmesecret';
         this.grant_type = 'client_credentials';
@@ -1114,7 +1114,7 @@ var ShippingComponent = (function () {
     };
     ShippingComponent.prototype.submitAddress = function () {
         var _this = this;
-        var addAddressURL = 'http://www.palletteapart.com/boot/rest/api/v1/shipping/address/add';
+        var addAddressURL = '/boot/rest/api/v1/shipping/address/add';
         this.submitted = true;
         this.model.orderId = localStorage.getItem('orderId');
         return this.http.post(addAddressURL, JSON.stringify(this.model), { headers: this.getHeaders() }).map(function (res) { return res.json(); })
@@ -1136,7 +1136,7 @@ var ShippingComponent = (function () {
     ShippingComponent.prototype.ngAfterViewInit = function () {
         this.removeCart = document.getElementById('cart');
         this.payuform = document.getElementById('payuform');
-        this.paymentUrl = "http://www.palletteapart.com/boot/" + localStorage.getItem('orderId') + "/paynow";
+        this.paymentUrl = "/boot/" + localStorage.getItem('orderId') + "/paynow";
         this.payuform.action = this.paymentUrl;
     };
     Object.defineProperty(ShippingComponent.prototype, "diagnostic", {
@@ -1248,7 +1248,7 @@ var StoresComponent = (function () {
             console.log('HERE');
             _this.stores = response.brands;
         }, function (error) {
-            if (error.status == 401 || error.status == 0) {
+            if (error.status == 401) {
                 console.log('HERE');
                 //Remove Token if exists
                 localStorage.removeItem('refresh-token-set');
@@ -1317,7 +1317,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
-        this.OauthLoginEndPointUrl = 'http://www.palletteapart.com/boot/oauth/token'; // Oauth Login EndPointUrl to web API
+        this.OauthLoginEndPointUrl = '/boot/oauth/token'; // Oauth Login EndPointUrl to web API
         this.clientId = 'acme';
         this.clientSecret = 'acmesecret';
         this.grant_type = 'client_credentials';
@@ -1334,7 +1334,7 @@ var DataService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var body = 'grant_type=client_credentials&client_id=acme&client_secret=acmesecret';
         var params1 = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
-        return this.http.post('http://www.palletteapart.com/boot/oauth/token', body, {
+        return this.http.post('/boot/oauth/token', body, {
             headers: headers
         }).map(function (res) {
             _this.data = res.json().access_token.toString();
@@ -1358,13 +1358,13 @@ var DataService = (function () {
         options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
             headers: headers2,
         });
-        return this.http.get('http://www.palletteapart.com/boot/rest/api/v1/brands', options).map(function (res) { return res.json(); });
+        return this.http.get('/boot/rest/api/v1/brands', options).map(function (res) { return res.json(); });
     };
     // GET THE PRODUCTS
     DataService.prototype.product = function (id) {
         //let params: URLSearchParams = new URLSearchParams();
         //params.set('client_id',id );
-        var url = "http://www.palletteapart.com/boot/rest/api/v1/products/brand/" + id;
+        var url = "/boot/rest/api/v1/products/brand/" + id;
         return this.http
             .get(url, { headers: this.getHeaders() }).map(function (res) { return res.json(); });
     };
